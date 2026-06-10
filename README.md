@@ -1,78 +1,98 @@
 <div align="center">
 
-# [ICML 2026] *Robust-U1*: *Can MLLMs Self-Recover Corrupted Visual Content for Robust Understanding?*
-This is the official repository for *Robust-U1*.
+# Robust-U1: Can MLLMs Self-Recover Corrupted Visual Content for Robust Understanding?
 
-[Jiaqi Tang^](https://jqt.me/), 
-[Jianmin Chen^](https://github.com/Ch921-cell), 
-[Youyang Zhai^](), 
-\
-[Wei Wei**](https://scholar.google.com/citations?hl=zh-CN&user=v8KMYlwAAAAJ), 
-[Runtao Liu](), 
-[Mengjie Zhao](), 
-[Xiangyu Wu](), 
-[Qingfa Xiao](), and 
-\
-[Qifeng Chen*](https://cqf.io)
+<p><b>ICML 2026</b> &nbsp;|&nbsp; Official Implementation</p>
 
-^: Equal contribution. *: Corresponding author. **: Co-corresponding author.
+[Jiaqi Tang](https://jqt.me/)<sup>★</sup>,
+[Jianmin Chen](https://github.com/Ch921-cell)<sup>★</sup>,
+[Youyang Zhai]()<sup>★</sup>,
+[Wei Wei](https://scholar.google.com/citations?hl=zh-CN&user=v8KMYlwAAAAJ)<sup>‡</sup>,
+[Runtao Liu](),
+[Mengjie Zhao](),
+[Xiangyu Wu](),
+[Qingfa Xiao](),
+[Qifeng Chen](https://cqf.io)<sup>†</sup>
 
-[![Paper](https://img.shields.io/badge/cs.CV-Paper-b31b1b?style=flat&logo=arxiv&logoColor=white)](https://openreview.net/forum?id=I6W6cxVVts)
-[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-ffd21e)](https://huggingface.co/Jiaqi-hkust/Robust-U1)
+<sub><sup>★</sup> Equal contribution &nbsp;&nbsp; <sup>†</sup> Corresponding author &nbsp;&nbsp; <sup>‡</sup> Co-corresponding author</sub>
+
+<br/>
+
+[![Paper](https://img.shields.io/badge/Paper-OpenReview-8b1a1a?style=flat&logo=arxiv&logoColor=white)](https://openreview.net/forum?id=I6W6cxVVts)
+[![arXiv](https://img.shields.io/badge/arXiv-2606.08063-b31b1b?style=flat&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2606.08063)
+[![Models](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-ffd21e)](https://huggingface.co/Jiaqi-hkust/Robust-U1)
+[![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Demo-ffd21e)](https://huggingface.co/spaces/Jiaqi-hkust/Robust-U1)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Stars](https://img.shields.io/github/stars/jqtangust/Robust-U1?style=social)](https://github.com/jqtangust/Robust-U1)
 
 </div>
 
-## 📰 **News**
-- **[2026-06-07]** 🔥 *We release the [code](https://github.com/jqtangust/Robust-U1) and [models](https://huggingface.co/Jiaqi-hkust/Robust-U1) on Hugging Face.*
-- **[2026-05-07]** 🚀 Our paper is accepted by **ICML 2026**.
+> **TL;DR** — *Robust-U1* is a unified MLLM that **self-recovers corrupted visual content** and reasons over it, enabling **robust visual understanding** under real-world image degradations.
 
 ---
 
-## 🔭 **Motivation**
+## 📰 News
 
-- 🚩 **Black-Box Alignment**: Existing feature-alignment methods lack interpretability and fail to explicitly model the corruption process.
-- 🚩 **Text-Only Compensation**: Text-based reasoning cannot recover lost pixel-level visual details for faithful visual understanding.
+- **`2026-06-11`** 🔥 We release the **code**, **pretrained models**, and the **online demo** of *Robust-U1*!
+- **`2026-05-07`** 🎉 *Robust-U1* is accepted to **ICML 2026**!
 
-This motivates a key question: Can MLLMs recover corrupted visual content by themselves?
+---
+
+## 📑 Table of Contents
+
+[🔭 Motivation](#-motivation) &nbsp;·&nbsp; [📦 Installation](#-installation) &nbsp;·&nbsp; [🤖 Models](#-models) &nbsp;·&nbsp; [💻 Demo](#-demo) &nbsp;·&nbsp; [🧠 Training](#-training) &nbsp;·&nbsp; [📊 Evaluation](#-evaluation) &nbsp;·&nbsp; [⭐ Citation](#-citation) &nbsp;·&nbsp; [📬 Contact](#-contact)
+
+---
+
+## 🔭 Motivation
+
+Existing approaches to robust visual understanding face two key limitations:
+
+- 🚩 **Black-Box Alignment** — Feature-alignment methods lack interpretability and fail to explicitly model the corruption process.
+- 🚩 **Text-Only Compensation** — Text-based reasoning cannot recover lost pixel-level visual details for faithful visual understanding.
+
+> This motivates a key question: ***Can MLLMs recover corrupted visual content by themselves?***
 
 <div align="center">
   <img src="assets/Motivation.png" width="90%" alt="Motivation Overview">
-  <br>
 </div>
 
 ---
 
-## 🛠️ **Installation**
+## 📦 Installation
 
-- **Clone the repository:**
-   ```bash
-   git clone https://github.com/jqtangust/Robust-U1.git
-   cd Robust-U1
-   ```
+**1. Clone the repository**
 
-- **Create environment:**
-   ```bash
-   conda create -n Robust-U1 python=3.10
-   conda activate Robust-U1
-   pip install -r requirements.txt
-   pip install -e .
-   ```
-   
+```bash
+git clone https://github.com/jqtangust/Robust-U1.git
+cd Robust-U1
+```
+
+**2. Create the environment**
+
+```bash
+conda create -n Robust-U1 python=3.10
+conda activate Robust-U1
+pip install -r requirements.txt
+pip install -e .
+```
+
 ---
 
-### 🏰 **Pretrained checkpoints (reference)**
+## 🤖 Models
 
-| Checkpoint | Link | Note |
-|:----------:|:----:|:----:|
-| BAGEL-7B-MoT | [ByteDance-Seed/BAGEL-7B-MoT](https://huggingface.co/ByteDance-Seed/BAGEL-7B-MoT) | Used as initial weights for training. |
+| Model | Link | Description |
+|:------|:-----|:------------|
+| BAGEL-7B-MoT | [ByteDance-Seed/BAGEL-7B-MoT](https://huggingface.co/ByteDance-Seed/BAGEL-7B-MoT) | Base model used as the initial weights for training. |
 | **Robust-U1** | [Jiaqi-hkust/Robust-U1](https://huggingface.co/Jiaqi-hkust/Robust-U1) | Final model for visual self-recovery and multimodal reasoning. |
-| **Robust-U1-RL** | [Jiaqi-hkust/Robust-U1-RL](https://huggingface.co/Jiaqi-hkust/Robust-U1-RL) | Fine-tuned with reinforcement learning. |
-| **Robust-U1-SFT** | [Jiaqi-hkust/Robust-U1-SFT](https://huggingface.co/Jiaqi-hkust/Robust-U1-SFT) | Fine-tuned with supervised learning. |
+| **Robust-U1-SFT** | [Jiaqi-hkust/Robust-U1-SFT](https://huggingface.co/Jiaqi-hkust/Robust-U1-SFT) | Stage-I supervised fine-tuned checkpoint. |
+| **Robust-U1-RL** | [Jiaqi-hkust/Robust-U1-RL](https://huggingface.co/Jiaqi-hkust/Robust-U1-RL) | Stage-II reinforcement-learning checkpoint. |
 
 ---
 
-## ⏳ **Demo**
+## 💻 Demo
+
+> 🌐 **Online demo** — try *Robust-U1* directly on [Hugging Face Spaces](https://huggingface.co/spaces/Jiaqi-hkust/Robust-U1).
 
 ### 🖥️ CLI
 
@@ -87,31 +107,32 @@ python demo.py \
   --output-dir "$OUTPUT_DIR"
 ```
 
-### 🌐 GUI
+### 🪟 GUI
 
-Set the model path and start the local Gradio demo:
+Set the model path and start the local Gradio demo (available at `http://localhost:7860` by default):
 
 ```bash
 export MODEL_PATH="/path/to/Robust-U1"
 python app.py --model-path "$MODEL_PATH"
 ```
 
-The demo is available at `http://localhost:7860` by default.
-
-GUI online demo: [Hugging Face Space](https://huggingface.co/spaces/Jiaqi-hkust/Robust-U1).
-
 <div align="center">
-  <img src="assets/demo.png" alt="Robust-U1 Demo">
+  <img src="assets/demo.png" width="90%" alt="Robust-U1 Demo">
 </div>
 
 ---
 
+## 🧠 Training
 
-## 🧠 **Training**
+*Robust-U1* is trained with a **three-stage pipeline**:
 
-Robust-U1 is trained with a three-stage pipeline: visual self-recovery, reinforcement learning for visual quality alignment, and multimodal reasoning for robust visual understanding.
+| Stage | Goal | Framework |
+|:-----:|:-----|:----------|
+| **I. Visual Self-Recovery** | Recover clean images from corrupted inputs (SFT) | [MathCanvas](https://github.com/shiwk24/MathCanvas/) |
+| **II. Visual Quality Alignment** | Align recovery with pixel-level fidelity & semantics (RL) | [Flow-GRPO](https://github.com/yifan123/flow_grpo) |
+| **III. Multimodal Reasoning** | Reason over corrupted & recovered images | [MathCanvas](https://github.com/shiwk24/MathCanvas/) |
 
-### 🎓 Stage I & III:
+### 🎓 Stage I & III — Self-Recovery & Reasoning
 
 We use [MathCanvas](https://github.com/shiwk24/MathCanvas/) for both supervised fine-tuning and multimodal reasoning training. Stage I adapts the base unified MLLM to recover clean images from corrupted inputs, while Stage III trains the model to reason over both corrupted and recovered images.
 
@@ -143,7 +164,7 @@ We use [MathCanvas](https://github.com/shiwk24/MathCanvas/) for both supervised 
    bash scripts/train/stage2.sh
    ```
 
-### 🎓 Stage II:
+### 🎓 Stage II — Visual Quality Alignment (RL)
 
 We use [Flow-GRPO](https://github.com/yifan123/flow_grpo) to further align the recovery model with pixel-level structural fidelity and semantic consistency. The Robust-U1 rewards are packaged in [`rewards/`](./rewards) and can be registered directly in Flow-GRPO.
 
@@ -199,10 +220,9 @@ We use [Flow-GRPO](https://github.com/yifan123/flow_grpo) to further align the r
      --config config/grpo.py:restoration_bagel
    ```
 
-
 ---
 
-## 📊 **Evaluation**
+## 📊 Evaluation
 
 We use [VLMEvalKit](https://github.com/open-compass/VLMEvalKit) for anti-degradation evaluation.
 
@@ -216,10 +236,7 @@ We use [VLMEvalKit](https://github.com/open-compass/VLMEvalKit) for anti-degrada
 
 2. Prepare the evaluation datasets according to VLMEvalKit requirements.
 
-
-3. **Image Degradation Pipeline**: Generate corrupted images for robustness evaluation.
-
-   We provide an image degradation pipeline for generating corrupted images to evaluate model robustness.
+3. **Image Degradation Pipeline** — generate corrupted images for robustness evaluation.
 
    Navigate to the degradation pipeline directory and process images:
 
@@ -248,7 +265,7 @@ For R-Bench evaluation, we use [R-Bench](https://github.com/Q-Future/R-Bench) to
    git clone https://github.com/Q-Future/R-Bench.git
    ```
 
-2. Evaluate using VLMEvalKit with R-Bench dataset:
+2. Evaluate using VLMEvalKit with the R-Bench dataset:
 
    ```bash
    cd VLMEvalKit
@@ -259,9 +276,9 @@ For R-Bench evaluation, we use [R-Bench](https://github.com/Q-Future/R-Bench) to
 
 ---
 
-## ⭐️ **Citation**
+## ⭐ Citation
 
-If you find this repository useful, please cite our paper:
+If you find this repository useful, please consider citing our paper:
 
 ```bibtex
 @misc{tang2026robustu1mllmsselfrecovercorrupted,
@@ -277,6 +294,14 @@ If you find this repository useful, please cite our paper:
 
 ---
 
-## 🤝 **Acknowledgements**
+## 📬 Contact
 
-We thank the authors of [BAGEL](https://huggingface.co/ByteDance-Seed/BAGEL-7B-MoT), [MathCanvas](https://github.com/shiwk24/MathCanvas/) and [Flow-GRPO](https://github.com/yifan123/flow_grpo) for their contributions.
+For questions about the paper or code, feel free to open a [GitHub issue](https://github.com/jqtangust/Robust-U1/issues) or reach out:
+
+- **Jiaqi Tang** — [jtang092@connect.ust.hk](mailto:jtang092@connect.ust.hk)
+
+---
+
+## 🤝 Acknowledgements
+
+We thank the authors of [BAGEL](https://huggingface.co/ByteDance-Seed/BAGEL-7B-MoT), [MathCanvas](https://github.com/shiwk24/MathCanvas/), and [Flow-GRPO](https://github.com/yifan123/flow_grpo) for their excellent open-source contributions.

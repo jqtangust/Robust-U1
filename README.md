@@ -281,14 +281,11 @@ For R-Bench evaluation, we use [R-Bench](https://github.com/Q-Future/R-Bench) to
 If you find this repository useful, please consider citing our paper:
 
 ```bibtex
-@misc{tang2026robustu1mllmsselfrecovercorrupted,
-      title={Robust-U1: Can MLLMs Self-Recover Corrupted Visual Content for Robust Understanding?}, 
-      author={Jiaqi Tang and Jianmin Chen and Youyang Zhai and Wei Wei and Runtao Liu and Mengjie Zhao and Xiangyu Wu and Qingfa Xiao and Qifeng Chen},
+@inproceedings{tang2026robustu1,
+      title={Robust-U1: Can MLLMs Self-Recover Corrupted Visual Content for Robust Understanding?},
+      author={Tang, Jiaqi and Chen, Jianmin and Zhai, Youyang and Wei, Wei and Liu, Runtao and Zhao, Mengjie and Wu, Xiangyu and Xiao, Qingfa and Chen, Qifeng},
+      booktitle={Proceedings of the 43rd International Conference on Machine Learning (ICML)},
       year={2026},
-      eprint={2606.08063},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2606.08063}, 
 }
 ```
 

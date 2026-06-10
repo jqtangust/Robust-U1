@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "robust-u1"
+version = "0.1.0"
+description = "Robust-U1 inference, modeling, and reward adapters for robust visual self-recovery"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+  "numpy>=1.22",
+  "Pillow>=9.0",
+  "torch>=2.1",
+  "pytorch-msssim>=1.0.0",
+  "open-clip-torch>=2.24.0",
+  "safetensors>=0.4.0",
+]
+
+[project.optional-dependencies]
+demo = [
+  "accelerate>=0.34.0",
+  "gradio>=4.0.0",
+  "huggingface-hub>=0.23.0",
+]
+modeling = [
+  "transformers>=4.55.4",
+  "diffusers>=0.30.0",
+  "einops>=0.8.1",
+  "opencv-python-headless>=4.8.0",
+  "sentencepiece>=0.1.99",
+  "regex>=2023.0.0",
+  "tqdm>=4.65.0",
+]
+
+[project.scripts]
+robust-u1-cli = "demo:main"
+robust-u1-gradio = "app:main"
+
+[tool.setuptools]
+py-modules = ["demo", "app"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = ["tests*"]
